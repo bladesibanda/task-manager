@@ -58,7 +58,7 @@ public class ProjectService {
   @ReactiveTransactional
   public Uni<Void> delete(long id) {
     return findById(id)
-        .chain(p -> Task.update("project = null where project where project = ?1", p)
+        .chain(p -> Task.update("project = null where project = ?1", p)
             .chain(i -> p.delete()));
   }
 }

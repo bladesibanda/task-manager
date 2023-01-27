@@ -10,6 +10,7 @@ import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.example.fullstack.project.Project;
 import com.example.fullstack.user.User;
 
 import io.quarkus.hibernate.reactive.panache.PanacheEntity;
@@ -29,6 +30,9 @@ public class Task extends PanacheEntity {
   public User user;
 
   public ZonedDateTime complete;
+
+  @ManyToOne
+  public Project project;
 
   @CreationTimestamp
   @Column(updatable = false, nullable = true)
