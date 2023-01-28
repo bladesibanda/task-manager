@@ -2,6 +2,7 @@ package com.example.fullstack.user;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -62,5 +63,13 @@ public class UserResource {
   @Path("self")
   public Uni<User> getCurrentUser() {
     return userService.getCurrentUser();
+  }
+
+  @PUT
+  @Path("self/password")
+  @RolesAllowed("user")
+  public Uni<User> changePassword(PasswordChange passwordChange) {
+    return userService
+        .changePassword(passwordChange.currentPassword(), passwordChange.newPassword());
   }
 }
