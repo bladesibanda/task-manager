@@ -41,7 +41,6 @@ public class ProjectResource {
 
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
-  @ResponseStatus(201)
   @Path("/{id}")
   public Uni<Project> update(@PathParam("id") long id, Project project) {
     project.id = id;

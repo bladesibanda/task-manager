@@ -1,7 +1,6 @@
 package com.example.fullstack.user;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.hamcrest.MatcherAssert;
