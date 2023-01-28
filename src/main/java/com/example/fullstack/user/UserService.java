@@ -3,7 +3,9 @@ package com.example.fullstack.user;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.hibernate.ObjectNotFoundException;
 
 import com.example.fullstack.project.Project;
@@ -15,6 +17,13 @@ import io.smallrye.mutiny.Uni;
 
 @ApplicationScoped
 public class UserService {
+  private final JsonWebToken jwt;
+
+  @Inject
+  public UserService(JsonWebToken jwt) {
+    this.jwt = jwt;
+  }
+
   public Uni<User> findById(long id) {
     return User.<User>findById(id)
         .onItem().ifNull().failWith(
@@ -53,7 +62,10 @@ public class UserService {
   }
 
   public Uni<User> getCurrentUser() {
-    // TODO: replace implementation once security is added to the project
-    return User.find("order by ID").firstResult();
+    return findByName(jwt.getName());
+  }
+
+  public static boolean matches(User user, String password) {
+    return BcryptUtil.matches(password, user.password);
   }
 }
