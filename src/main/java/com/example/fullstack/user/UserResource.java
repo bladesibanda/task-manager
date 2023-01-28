@@ -18,6 +18,7 @@ import org.jboss.resteasy.reactive.ResponseStatus;
 import io.smallrye.mutiny.Uni;
 
 @Path("/api/v1/users")
+@RolesAllowed("admin")
 public class UserResource {
   private final UserService userService;
 
@@ -61,6 +62,7 @@ public class UserResource {
 
   @GET
   @Path("self")
+  @RolesAllowed("user")
   public Uni<User> getCurrentUser() {
     return userService.getCurrentUser();
   }

@@ -2,6 +2,7 @@ package com.example.fullstack.project;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -17,6 +18,7 @@ import org.jboss.resteasy.reactive.ResponseStatus;
 import io.smallrye.mutiny.Uni;
 
 @Path("/api/v1/projects")
+@RolesAllowed("user")
 public class ProjectResource {
   private final ProjectService projectService;
 
