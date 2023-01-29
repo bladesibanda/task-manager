@@ -144,6 +144,10 @@
       <properties>
         <skipITs>false</skipITs>
         <quarkus.package.type>native</quarkus.package.type>
+        <quarkus.native.container-build>true</quarkus.native.container-build>
+        <quarkus.native.builder-image>
+          quay.io/quarkus/ubi-quarkus-mandrel:22.3-java17
+        </quarkus.native.builder-image>
       </properties>
     </profile>
   </profiles>
